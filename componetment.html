@@ -9,11 +9,36 @@
 </head>
 
 <body>
-    <ul>
+    <ul id="app">
         <todo-item></todo-item>
     </ul>
+    <div id="app2">
+        <ul>
+            <todo-item v-for="todo in todos" v-bind:todo="todo"></todo-item>                 
+        </ul>
+    </div>
     <script src="vue.js"></script>
     <script>
+        //定义一个组件
+        // Vue.component('todo-item', {
+        //     template: '<li>This is a todo</li>'
+        // })
+        // var vm = new Vue({
+        //     el: "#app",
+        //     data: {
+
+        //     }
+        // })
+        Vue.component('todo-item',{
+            props:['todo'],
+            template:'<li>{{todo.text}}<li>'
+        })
+        var app2 = new Vue({
+            el: "#app2 ul",
+            data:{
+                todos :[{text:"hello"},{text:"my"},{text:"vue"}]
+            }
+        });
     </script>
 </body>
 
